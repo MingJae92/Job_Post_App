@@ -4,7 +4,6 @@ import { View, Text, TextInput, Button } from 'react-native';
 import { connect } from 'react-redux';
 import { addJob } from '../redux/jobActions';
 
-
 const AddJobScreen = ({ navigation, addJob }) => {
   const [job, setJob] = useState({
     title: '',

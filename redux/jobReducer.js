@@ -5,7 +5,7 @@ import {
     ADD_JOB_SUCCESS,
     EDIT_JOB_SUCCESS,
     ERROR,
-  } from './jobActions';
+  } from './redux/jobActions';
   
   const initialState = {
     jobs: [],
