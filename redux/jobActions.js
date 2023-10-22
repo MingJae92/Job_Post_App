@@ -1,41 +1,29 @@
-// redux/jobActions.js
+// actions/jobActions.js
 import axios from 'axios';
 
-export const FETCH_JOBS_SUCCESS = 'FETCH_JOBS_SUCCESS';
-export const FETCH_JOB_SUCCESS = 'FETCH_JOB_SUCCESS';
-export const ADD_JOB_SUCCESS = 'ADD_JOB_SUCCESS';
-export const EDIT_JOB_SUCCESS = 'EDIT_JOB_SUCCESS';
-export const ERROR = 'ERROR';
+// Existing action types
+export const SET_JOB_LIST = 'SET_JOB_LIST';
+export const SELECT_JOB = 'SELECT_JOB';
 
-export const fetchJobs = () => {
-  return async (dispatch) => {
-    try {
-      const response = await axios.get('/jobs');
-      dispatch({ type: FETCH_JOBS_SUCCESS, payload: response.data });
-    } catch (error) {
-      dispatch({ type: ERROR, payload: error.message });
-    }
-  };
+// New action types
+export const ADD_JOB = 'ADD_JOB';
+export const EDIT_JOB = 'EDIT_JOB';
+
+// Action creators for adding and editing jobs
+export const addJob = (job) => async (dispatch) => {
+  try {
+    const response = await axios.post('/api/jobs', job);
+    dispatch({ type: ADD_JOB, payload: response.data });
+  } catch (error) {
+    console.error(error);
+  }
 };
 
-export const addJob = (jobData) => {
-  return async (dispatch) => {
-    try {
-      const response = await axios.post('/jobs', jobData);
-      dispatch({ type: ADD_JOB_SUCCESS, payload: response.data });
-    } catch (error) {
-      dispatch({ type: ERROR, payload: error.message });
-    }
-  };
-};
-
-export const editJob = (id, jobData) => {
-  return async (dispatch) => {
-    try {
-      const response = await axios.put(`/jobs/${id}`, jobData);
-      dispatch({ type: EDIT_JOB_SUCCESS, payload: response.data });
-    } catch (error) {
-      dispatch({ type: ERROR, payload: error.message });
-    }
-  };
+export const editJob = (job) => async (dispatch) => {
+  try {
+    const response = await axios.put(`/api/jobs/${job.id}`, job);
+    dispatch({ type: EDIT_JOB, payload: response.data });
+  } catch (error) {
+    console.error(error);
+  }
 };

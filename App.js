@@ -1,18 +1,23 @@
-// App.js
-import React from 'react';
-import { Provider } from 'react-redux';
-import { createStore, applyMiddleware } from 'redux';
-import thunk from 'redux-thunk';
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
+import JobListScreen from './Components/JobListScreen';
+import JobDetailScreen from './Components/JobDetailScreen';
+import AddJobScreen from './Components/AddJobScreen';
+import EditJobScreen from './Components/EditJobScreen';
 
-import Navigation from './Components/Navigation';
-import jobReducer from './redux/jobReducer';
+const Stack = createStackNavigator();
 
-const store = createStore(jobReducer, applyMiddleware(thunk));
-
-export default function App() {
+const App = () => {
   return (
-    <Provider store={store}>
-      <Navigation />
-    </Provider>
+    <NavigationContainer>
+      <Stack.Navigator initialRouteName="JobList">
+        <Stack.Screen name="JobList" component={JobListScreen} />
+        <Stack.Screen name="JobDetail" component={JobDetailScreen} />
+        <Stack.Screen name="AddJob" component={AddJobScreen} />
+        <Stack.Screen name="EditJob" component={EditJobScreen} />
+      </Stack.Navigator>
+    </NavigationContainer>
   );
-}
+};
+
+export default App;  // Add this export statement to export the App component
