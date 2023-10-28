@@ -37,7 +37,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'rest_framework'
+    'rest_framework',
+    'job_board_api'
 ]
 
 MIDDLEWARE = [
@@ -81,12 +82,21 @@ WSGI_APPLICATION = 'job_board_api.wsgi.application'
 #     }
 # }
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'djongo.db.backends.django',
+#         'NAME': 'Job_Listings',
+#     }
+# }
+
 DATABASES = {
     'default': {
         'ENGINE': 'djongo',
-        'NAME': 'your-db-name',
+        'ENFORCE_SCHEMA': True,
+        'NAME': 'Job_Listings',
     }
 }
+
 
 
 
