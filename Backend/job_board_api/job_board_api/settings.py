@@ -38,7 +38,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
-    'job_board_api'
+    'job_board_api',
+    'djongo'
 ]
 
 MIDDLEWARE = [
@@ -89,11 +90,31 @@ WSGI_APPLICATION = 'job_board_api.wsgi.application'
 #     }
 # }
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'djongo',
+#         'ENFORCE_SCHEMA': True,
+#         'NAME': 'Job_Listings',
+#     }
+# }
+
 DATABASES = {
     'default': {
-        'ENGINE': 'djongo',
-        'ENFORCE_SCHEMA': True,
-        'NAME': 'Job_Listings',
+        'ENGINE': 'django.db.backends.dummy',  # Set to a dummy engine to prevent Django from using a SQL database.
+        'NAME': 'myjobdb',  # Specify your MongoDB database name.
+        'HOST': 'localhost',  # Specify the MongoDB server host.
+        'PORT': 27017,  # Specify the MongoDB server port.
+        # Add any other MongoDB connection settings as needed.
+    }
+}
+
+DATABASE_ROUTERS = [
+    'djongo.routers.DatabaseRouter',
+]
+
+MONGODB_DATABASES = {
+    'default': {
+        'NAME': 'myjobdb',
     }
 }
 
