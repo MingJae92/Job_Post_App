@@ -99,13 +99,15 @@ WSGI_APPLICATION = 'job_board_api.wsgi.application'
 # }
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.dummy',  # Set to a dummy engine to prevent Django from using a SQL database.
-        'NAME': 'myjobdb',  # Specify your MongoDB database name.
-        'HOST': 'localhost',  # Specify the MongoDB server host.
-        'PORT': 27017,  # Specify the MongoDB server port.
-        # Add any other MongoDB connection settings as needed.
-    }
+        'default': {
+            'ENGINE': 'djongo',
+            'NAME': 'Job_Listings',
+            'ENFORCE_SCHEMA': False,
+            'CLIENT': {
+                'host': 'mongodb+srv://mingchi1992wong:428lRjFVJsScOUgz@cluster0.qcuegwc.mongodb.net/'
+
+            }  
+        }
 }
 
 DATABASE_ROUTERS = [
